@@ -3,18 +3,23 @@
 # ========================
 
 # 机场节点订阅
-
 proxy-providers:
-
-  机场名称:
-    url: "机场订阅地址"  
+  Airport1:
     type: http
+    url: "https://flyboard.actionz1103.xyz/sub?token=727b85d616e9d49084efbe0c1f1a8e71&clash"
     interval: 86400
+    path: ./proxy_provider/Airport1.yaml
+    proxy: 直连
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-    proxy: 直连      
+      timeout: 5000
+      lazy: false
+      expected-status: 204
+    override:
+      udp: true
+      skip-cert-verify: true
 
 proxies:
   - {name: 直连, type: direct}
@@ -32,11 +37,11 @@ tproxy-port: 7895
 allow-lan: true
 mode: rule
 log-level: info
+ipv6: true
+unified-delay: true
+tcp-concurrent: true
 
 external-controller: 0.0.0.0:9090
-# external-ui: ui
-# external-ui-name: zashboard
-# external-ui-url: https://gh-proxy.com/github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip
 secret: "123456"
 
 # ========================
@@ -46,67 +51,49 @@ dns:
   enable: true
   listen: 0.0.0.0:7874
   ipv6: true
+  cache-algorithm: arc
   enhanced-mode: fake-ip
-  fake-ip-range: 198.20.0.1/16
-  nameserver:
-    - 223.5.5.5
+  fake-ip-range: 198.18.0.0/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - +.lan
-    - +.local
-    - geosite:cn
-# 快猫    
-    - +.km688.ink
-# 火烧 
-    - +.onesubv.site
-    - +.oneyyds.online
-    - +.fengyyds.site
-    - +.onemg.top    
-# 猫耳 
-    - +.chybinc.com
-# BestVPN 
-    - +.invitevp.com
-    - +.vp2.us
-# 小牛
-    - +.xiaoniuyun.cc  
-# 硅谷
-    - +.apple-bing.sbs  
-# 无界
-    - +.bncrcloud.com
-# 冰云
-    - +.xby01.xyz
-# 牛逼   
-    - +.idsduf.com  
-    - +.66jc.top
-# 极速通        
-    - +.gfw.gg
-# 萌狗       
-    - +.moedog.cloud
-
-# 其他     
-    - +.ynhtbank.com
-    - +.qeayr.cn
-    - +.saojc.xyz   
-    - +.sssyun.xyz
-    - +.dler.cloud
-    - +.0tk8a3a1q4t94dler.com    
-    - +.aerianas.top
-    - +.gptacg.top
-    - +.wxda.net
-
-ipv6: true
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - 223.5.5.5
+  nameserver-policy:
+    "geosite:cn,private":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  fallback:
+    - tls://8.8.8.8:853
+    - https://1.0.0.1/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
 
 # ========================
 # TUN 模块
 # ========================
 tun:
   enable: true
-  stack: gvisor
+  stack: mixed
   device: utun
+  dns-hijack: ["any:53", "tcp://any:53"]
   endpoint-independent-nat: true
-  auto-route: false
-  auto-detect-interface: false
-  auto-redirect: false
+  auto-route: true
+  auto-detect-interface: true
+  auto-redirect: true
   strict-route: false
 
 profile:
@@ -133,7 +120,6 @@ default: &default
     - 拒绝
 
 proxy-groups:
-
   # 业务分流组
   - {name: ChatGPT, <<: *default}
   - {name: Claude, <<: *default}
@@ -166,13 +152,14 @@ proxy-groups:
 
   - name: 所有-手选
     type: select
-    include-all: true
+    use:
+      - Airport1
     filter: "^((?!(直连|拒绝)).)*$"
 
   - name: 所有-智选
     type: smart
-    include-all: true
-#   policy-priority: "香港:1.2;牛逼:0.8"
+    use:
+      - Airport1
     uselightgbm: true
     collectdata: true
     interval: 300
@@ -181,8 +168,8 @@ proxy-groups:
   # 香港组
   - name: 香港-智选
     type: smart
-    include-all: true
-#   policy-priority: "牛逼:0.8"
+    use:
+      - Airport1
     uselightgbm: true
     collectdata: true
     interval: 300
@@ -191,8 +178,8 @@ proxy-groups:
   # 台湾组
   - name: 台湾-智选
     type: smart
-    include-all: true
-#   policy-priority: "牛逼:0.8"
+    use:
+      - Airport1
     uselightgbm: true
     collectdata: true
     interval: 300
@@ -201,8 +188,8 @@ proxy-groups:
   # 日本组
   - name: 日本-智选
     type: smart
-    include-all: true
-#   policy-priority: "牛逼:0.8"
+    use:
+      - Airport1
     uselightgbm: true
     collectdata: true
     interval: 300
@@ -211,8 +198,8 @@ proxy-groups:
   # 新加坡组
   - name: 新加坡-智选
     type: smart
-    include-all: true
-#   policy-priority: "牛逼:0.8"
+    use:
+      - Airport1
     uselightgbm: true
     collectdata: true
     interval: 300
@@ -221,8 +208,8 @@ proxy-groups:
   # 韩国组
   - name: 韩国-智选
     type: smart
-    include-all: true
-#   policy-priority: "牛逼:0.8"
+    use:
+      - Airport1
     uselightgbm: true
     collectdata: true
     interval: 300
@@ -231,8 +218,8 @@ proxy-groups:
   # 美国组
   - name: 美国-智选
     type: smart
-    include-all: true
-#   policy-priority: "牛逼:0.8"
+    use:
+      - Airport1
     uselightgbm: true
     collectdata: true
     interval: 300
@@ -241,8 +228,8 @@ proxy-groups:
   # 英国组
   - name: 英国-智选
     type: smart
-    include-all: true
-#   policy-priority: "牛逼:0.8"
+    use:
+      - Airport1
     uselightgbm: true
     collectdata: true
     interval: 300
@@ -251,8 +238,8 @@ proxy-groups:
   # 其他组
   - name: 其他-智选
     type: smart
-    include-all: true
-#   policy-priority: "牛逼:0.8"
+    use:
+      - Airport1
     uselightgbm: true
     collectdata: true
     interval: 300
@@ -262,7 +249,8 @@ proxy-groups:
 # 规则引擎（rules）
 # ========================
 rules:
-
+  - "DOMAIN-SUFFIX,x.com,Twitter(X)"
+  - "DOMAIN-SUFFIX,twitter.com,Twitter(X)"
   - RULE-SET,TEST / Domain,Test
   - RULE-SET,Block / Domain,Block  
   - RULE-SET,ChatGPT / Domain,ChatGPT
