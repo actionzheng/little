@@ -98,6 +98,7 @@ dns:
     - "*.lan"
     - "*.local"
     - "+.localdomain"
+    - "+.9club.help"
     - "localhost.ptlogin2.qq.com"
     - "time.windows.com"
     - "time.apple.com"
@@ -125,6 +126,9 @@ dns:
   direct-nameserver-follow-policy: true
 
   nameserver-policy:
+    "+.9club.help":
+      - 223.5.5.5
+      - 119.29.29.29
     "geosite:private,cn,apple-cn,microsoft@cn,steam@cn":
       - 223.5.5.5
       - 119.29.29.29
@@ -161,7 +165,12 @@ dns:
       - 240.0.0.0/4
 
 rules:
+  # 9club direct rules at the very top
+  - "DOMAIN,9club.help,DIRECT"
   - "DOMAIN-SUFFIX,9club.help,DIRECT"
+  - "DOMAIN-KEYWORD,9club,DIRECT"
+  
+  # Base Local / Private
   - GEOSITE,private,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
@@ -171,12 +180,16 @@ rules:
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
   - IP-CIDR,240.0.0.0/4,DIRECT,no-resolve
+  
+  # Social & AI Overrides
   - DOMAIN-SUFFIX,x.com,PROXY
   - DOMAIN-SUFFIX,twitter.com,PROXY
   - DOMAIN-SUFFIX,openai.com,PROXY
   - DOMAIN-SUFFIX,chatgpt.com,PROXY
   - DOMAIN-SUFFIX,anthropic.com,PROXY
   - DOMAIN-SUFFIX,claude.ai,PROXY
+  
+  # Google & Android Services
   - DOMAIN-SUFFIX,google.com,PROXY
   - DOMAIN-SUFFIX,googleapis.com,PROXY
   - DOMAIN-SUFFIX,googleapis.cn,PROXY
@@ -198,6 +211,8 @@ rules:
   - GEOSITE,youtube,PROXY
   - GEOSITE,telegram,PROXY
   - GEOSITE,github,PROXY
+  
+  # Domestic Direct Rules
   - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,microsoft@cn,DIRECT
@@ -231,5 +246,8 @@ rules:
   - DOMAIN-SUFFIX,mi.com,DIRECT
   - GEOSITE,cn,DIRECT
   - GEOIP,CN,DIRECT
+  
+  # Catch-all
   - GEOSITE,geolocation-!cn,PROXY
   - MATCH,PROXY
+  
