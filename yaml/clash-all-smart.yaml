@@ -2,7 +2,7 @@
 mixed-port: 7890
 allow-lan: true
 bind-address: "*"
-ipv6: false
+ipv6: true
 unified-delay: true
 tcp-concurrent: true
 log-level: info
@@ -46,9 +46,10 @@ tun:
 dns:
   enable: true
   cache-algorithm: arc
-  ipv6: false
+  ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/16
+  fake-ip-range6: fc00::/18
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "+.lan"
@@ -57,6 +58,7 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
+    - 2400:3200::1
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
@@ -76,6 +78,7 @@ dns:
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
+      - ::ffff:0:0/96
 
 # ==================== 代理提供者 Proxy Providers ====================
 proxy-providers:
@@ -107,9 +110,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -120,7 +120,7 @@ proxy-groups:
     uselightgbm: true
     collectdata: true
     strategy: sticky-sessions
-    policy-priority: "IPLC:0.7;专线:0.7;IEPL:0.7;HK:0.85;SG:0.9;JP:0.95;US:1.2"
+    policy-priority: "IPLC:0.7;专线:0.7;IEPL:0.7;HK:0.85;JP:0.95;US:1.2"
     interval: 300
 
   - name: "💬 即时通讯"
@@ -131,9 +131,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
       - "🎯 全球直连"
 
   - name: "🌐 社交媒体"
@@ -144,9 +141,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
       - "🎯 全球直连"
     use:
       - provider1
@@ -159,9 +153,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
       - "🎯 全球直连"
 
   - name: "🤖 ChatGPT"
@@ -169,12 +160,9 @@ proxy-groups:
     proxies:
       - "🚀 手动选择"
       - "♻️ 自动选择"
-      - "🇸🇬 新加坡节点"
-      - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
+      - "🇭🇰 香港节点"
     use:
       - provider1
 
@@ -183,12 +171,9 @@ proxy-groups:
     proxies:
       - "🚀 手动选择"
       - "♻️ 自动选择"
-      - "🇸🇬 新加坡节点"
-      - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
+      - "🇭🇰 香港节点"
     use:
       - provider1
 
@@ -197,12 +182,8 @@ proxy-groups:
     proxies:
       - "🚀 手动选择"
       - "♻️ 自动选择"
-      - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -211,12 +192,9 @@ proxy-groups:
     proxies:
       - "🚀 手动选择"
       - "♻️ 自动选择"
-      - "🇸🇬 新加坡节点"
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -225,12 +203,9 @@ proxy-groups:
     proxies:
       - "🚀 手动选择"
       - "♻️ 自动选择"
-      - "🇸🇬 新加坡节点"
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -239,12 +214,9 @@ proxy-groups:
     proxies:
       - "🚀 手动选择"
       - "♻️ 自动选择"
-      - "🇸🇬 新加坡节点"
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -253,12 +225,9 @@ proxy-groups:
     proxies:
       - "🚀 手动选择"
       - "♻️ 自动选择"
-      - "🇸🇬 新加坡节点"
-      - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
+      - "🇭🇰 香港节点"
       - "🇯🇵 日本节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -267,12 +236,9 @@ proxy-groups:
     proxies:
       - "🚀 手动选择"
       - "♻️ 自动选择"
-      - "🇸🇬 新加坡节点"
-      - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
+      - "🇭🇰 香港节点"
       - "🇯🇵 日本节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -281,12 +247,9 @@ proxy-groups:
     proxies:
       - "🚀 手动选择"
       - "♻️ 自动选择"
-      - "🇸🇬 新加坡节点"
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
       - "🎯 全球直连"
     use:
       - provider1
@@ -300,9 +263,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -315,17 +275,16 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
   - name: "📺 Bahamut"
     type: select
     proxies:
-      - "🇼🇸 台湾节点"
       - "🚀 手动选择"
+      - "♻️ 自动选择"
+      - "🇭🇰 香港节点"
+      - "🇯🇵 日本节点"
       - "🎯 全球直连"
     use:
       - provider1
@@ -338,9 +297,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -353,9 +309,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -367,9 +320,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
 
   - name: "🇬 谷歌服务"
     type: select
@@ -379,9 +329,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -394,9 +341,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -409,9 +353,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -424,9 +365,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -439,9 +377,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -454,9 +389,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -469,9 +401,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-      - "🇸🇬 新加坡节点"
-      - "🇼🇸 台湾节点"
-      - "🇰🇷 韩国节点"
     use:
       - provider1
 
@@ -507,39 +436,6 @@ proxy-groups:
   - name: "🇯🇵 日本节点"
     type: smart
     filter: '(?i)(🇯🇵|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|(?<!尼|-)日|\bJP(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Japan|JAPAN|JPN|NRT|HND|KIX|TYO|OSA|关西|Kansai|KANSAI)'
-    use:
-      - provider1
-    uselightgbm: true
-    collectdata: true
-    strategy: sticky-sessions
-    policy-priority: "IPLC:0.7;专线:0.7;IEPL:0.7;BGP:0.85"
-    interval: 300
-
-  - name: "🇸🇬 新加坡节点"
-    type: smart
-    filter: '(?i)(🇸🇬|新加坡|坡|狮城|\bSG(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Singapore|SINGAPORE|SIN)'
-    use:
-      - provider1
-    uselightgbm: true
-    collectdata: true
-    strategy: sticky-sessions
-    policy-priority: "IPLC:0.7;专线:0.7;IEPL:0.7;BGP:0.85"
-    interval: 300
-
-  - name: "🇼🇸 台湾节点"
-    type: smart
-    filter: '(?i)(🇹🇼|🇼🇸|台|新北|彰化|\bTW(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Taiwan|TAIWAN|TWN|TPE|ROC)'
-    use:
-      - provider1
-    uselightgbm: true
-    collectdata: true
-    strategy: sticky-sessions
-    policy-priority: "IPLC:0.7;专线:0.7;IEPL:0.7;BGP:0.85"
-    interval: 300
-
-  - name: "🇰🇷 韩国节点"
-    type: smart
-    filter: '(?i)(🇰🇷|\bKR(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Korea|KOREA|KOR|首尔|韩|韓|春川|Chuncheon|ICN)'
     use:
       - provider1
     uselightgbm: true
