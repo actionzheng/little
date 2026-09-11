@@ -102,6 +102,13 @@ proxy-providers:
 
 # ==================== 代理策略组 Proxy Groups ====================
 proxy-groups:
+  # --- 广告拦截策略组 ---
+  - name: "🛑 广告拦截"
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+
   # --- 核心与业务策略组 ---
   - name: "🚀 手动选择"
     type: select
@@ -142,8 +149,6 @@ proxy-groups:
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
       - "🎯 全球直连"
-    use:
-      - provider1
 
   - name: "🚀 GitHub"
     type: select
@@ -163,8 +168,6 @@ proxy-groups:
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
       - "🇭🇰 香港节点"
-    use:
-      - provider1
 
   - name: "🤖 AI服务"
     type: select
@@ -174,8 +177,6 @@ proxy-groups:
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
       - "🇭🇰 香港节点"
-    use:
-      - provider1
 
   - name: "🎶 TikTok"
     type: select
@@ -184,8 +185,6 @@ proxy-groups:
       - "♻️ 自动选择"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "📹 YouTube"
     type: select
@@ -195,8 +194,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🎥 Netflix"
     type: select
@@ -206,8 +203,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🎥 DisneyPlus"
     type: select
@@ -217,8 +212,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🎥 HBO"
     type: select
@@ -228,8 +221,6 @@ proxy-groups:
       - "🇺🇸 美国节点"
       - "🇭🇰 香港节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🎥 PrimeVideo"
     type: select
@@ -239,8 +230,6 @@ proxy-groups:
       - "🇺🇸 美国节点"
       - "🇭🇰 香港节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🎥 AppleTV+"
     type: select
@@ -251,8 +240,6 @@ proxy-groups:
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
       - "🎯 全球直连"
-    use:
-      - provider1
 
   - name: "🎥 Emby"
     type: select
@@ -263,8 +250,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🎻 Spotify"
     type: select
@@ -275,8 +260,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "📺 Bahamut"
     type: select
@@ -286,8 +269,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇯🇵 日本节点"
       - "🎯 全球直连"
-    use:
-      - provider1
 
   - name: "🌎 国外媒体"
     type: select
@@ -297,8 +278,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🛒 国外电商"
     type: select
@@ -309,8 +288,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "📢 谷歌FCM"
     type: select
@@ -329,8 +306,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🍎 苹果服务"
     type: select
@@ -341,8 +316,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "Ⓜ️ 微软服务"
     type: select
@@ -353,8 +326,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🎮 游戏平台"
     type: select
@@ -365,8 +336,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🎮 Steam"
     type: select
@@ -377,8 +346,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🚀 测速工具"
     type: select
@@ -389,8 +356,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🐟 漏网之鱼"
     type: select
@@ -401,8 +366,6 @@ proxy-groups:
       - "🇭🇰 香港节点"
       - "🇺🇸 美国节点"
       - "🇯🇵 日本节点"
-    use:
-      - provider1
 
   - name: "🔀 非标端口"
     type: select
@@ -452,6 +415,11 @@ proxy-groups:
 
 # ==================== 分流规则 Rules ====================
 rules:
+  # --- 广告拦截前置规则 ---
+  - "GEOSITE,category-ads-all,🛑 广告拦截"
+  - "RULE-SET,AdBlock,🛑 广告拦截"
+
+  # --- 业务分流规则 ---
   - "DOMAIN-SUFFIX,9club.help,🎯 全球直连"
   - "GEOSITE,private,🎯 全球直连"
   - "GEOIP,private,🎯 全球直连,no-resolve"
@@ -505,6 +473,13 @@ rules:
 
 # ==================== 规则提供者 Rule Providers ====================
 rule-providers:
+  AdBlock:
+    behavior: domain
+    interval: 86400
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./rule_providers/reject.yaml
+
   Nonstandard_Port_Direct:
     behavior: classical
     interval: 28800
